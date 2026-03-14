@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rpg-card-creator
+    restart: unless-stopped

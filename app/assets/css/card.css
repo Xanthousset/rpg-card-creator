@@ -1,0 +1,13 @@
+.card-ratio {
+  aspect-ratio: 2.5/3.5;
+}
+
+.no-rounded {
+  * {
+    border-radius: unset !important;
+  }
+}
+
+body > div:last-child > span + img {
+  display: inline !important;
+}
