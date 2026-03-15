@@ -11,14 +11,8 @@
 </template>
 
 <script setup lang="ts">
-
-import {defineComponent} from "vue";
 import SidebarNav from "~/components/Nav/SidebarNav.vue";
 import Settings from "~/components/Settings/Settings.vue";
-
-export default defineComponent({
-  components: {Settings, SidebarNav}
-})
 </script>
 
 
