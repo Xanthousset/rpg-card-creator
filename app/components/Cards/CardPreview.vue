@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="bg-gray-800 rounded-2xl overflow-hidden card-ratio" ref="rootElement">
+  <div class="overflow-hidden card" ref="rootElement">
 
     <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
 
@@ -33,7 +33,7 @@ defineExpose({
 </script>
 
 <style scoped>
-.card-ratio {
+.card {
   height: 100%;
 }
 </style>

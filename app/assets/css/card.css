@@ -1,3 +1,18 @@
+:root {
+  --card-bg: #000;
+  --card-border-color: #fff;
+  --card-border-width : 1px;
+  --card-border : solid var(--card-border-width) var(--card-border-color);
+  --card-radius : 5%;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  aspect-ratio: 2.5/3.5;
+}
+
 .card-ratio {
   aspect-ratio: 2.5/3.5;
 }

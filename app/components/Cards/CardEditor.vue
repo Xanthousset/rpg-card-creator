@@ -3,13 +3,13 @@
   <div class="w-full h-full flex justify-center items-center gap-12">
 
 
-    <div class="flex flex-col w-4/12 bg-black rounded-2xl overflow-hidden card-ratio">
+    <div class="flex flex-col w-4/12 border  overflow-hidden card ">
 
       <div class="w-full">
         <UFileUpload v-model="card.image" class="w-full min-h-48" :ui="{base: 'rounded-none' , file: 'no-rounded'}" />
       </div>
 
-      <div class="grow bg-black p-12 rounded-b-2xl">
+      <div class="grow p-12 rounded-b-2xl">
 
         <div class="flex justify-center w-full">
           <UInput v-model="card.name" variant="none" size="xl" placeholder="Card name" :ui="{'base' : 'text-3xl text-center'}" />

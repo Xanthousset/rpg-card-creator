@@ -1,7 +1,7 @@
 <template>
 
 
-  <div class="bg-gray-800 rounded-2xl overflow-hidden print-card" ref="rootElement">
+  <div class="overflow-hidden print-card card" ref="rootElement">
 
     <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
 

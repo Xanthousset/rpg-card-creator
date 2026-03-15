@@ -1,7 +1,7 @@
 <template>
   <div class="w-full cursor-pointer hover-3d" >
 
-    <div class="w-full bg-black rounded-2xl overflow-hidden card-ratio ">
+    <div class="w-full  overflow-hidden card ">
 
       <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
 

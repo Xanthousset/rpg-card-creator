@@ -4,7 +4,7 @@ import { Card } from '~/models/Card';
 
 export const useDeckStore = defineStore('deck', () => {
   const cards = reactive<Card[]>([]);
-  const editingCard = ref<Card>(undefined)
+  const editingCard = ref<Card>()
 
   function addCard(card: Card) {
     cards.push(reactive(card));
