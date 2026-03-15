@@ -10,7 +10,7 @@
   </UDashboardGroup>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 
 import {defineComponent} from "vue";
 import SidebarNav from "~/components/Nav/SidebarNav.vue";
