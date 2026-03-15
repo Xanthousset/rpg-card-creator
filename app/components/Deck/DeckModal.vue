@@ -6,7 +6,7 @@
     </div>
 
     <div class="flex flex-col justify-center items-center gap-8">
-      <UButton>Edit</UButton>
+      <UButton @click.native="sendToEditing" href="/edit">Edit</UButton>
 
       <div>
 
@@ -52,6 +52,10 @@ const duplicateCard = () => {
 
 const exportCard = () => {
   saveAsPng(preview.value.rootElement, props.card.name)
+}
+
+const sendToEditing = () => {
+  deckStore.setEditingCard(props.card)
 }
 
 </script>

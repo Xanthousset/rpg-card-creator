@@ -30,18 +30,28 @@
       {{ errorMessage }}
     </div>
 
-    <UButton @click="saveCard" >Add to deck</UButton>
+    <div class="flex flex-col gap-4 items-center">
+      <UButton @click="saveCard" > {{ buttonText }}</UButton>
+      <UButton href="/deck" > DECK </UButton>
+    </div>
+
 
   </div>
 
 </template>
 
 <script setup lang="ts">
-import placeholder from "~/assets/img/placeholder.png"
 import { Card } from '~/models/Card'
 
+const props = defineProps<{
+  editingCard?: Card
+  isEditing?: boolean
+}>()
+
+const buttonText = props.isEditing ? 'Save changes' : 'Add to deck'
+const router = useRouter()
 const deckStore = useDeckStore()
-const card = ref<Card>(new Card())
+const card = ref<Card>(props.isEditing && props.editingCard ? props.editingCard : new Card())
 const errorMessage = ref<string>()
 
 function saveCard(): void {
@@ -53,10 +63,14 @@ function saveCard(): void {
     return
   }
 
-  console.log(card.value)
+  if (props.isEditing) {
+    deckStore.updateCard(card.value)
+    router.push('/deck')
+  } else {
+    deckStore.addCard(card.value)
+    card.value = new Card()
+  }
 
-  deckStore.addCard(card.value)
-  card.value = new Card()
 }
 
 </script>

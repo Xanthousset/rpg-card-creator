@@ -1,9 +1,16 @@
 <template>
   <div class="relative bg-black flex flex-col items-center gap-24 rounded-2xl p-12" id="deck-modal">
     <div v-if="progress != 100" class="h-10/12">
-      <CardPreview v-if="currentCard" :card="currentCard" :key="currentCard.id" />
 
+        <UCarousel v-slot="{ item , index }"
+                   :items="cards"
+                   :ui="{ item: 'basis-1/3' }"
+                   ref="carousel"
+                   :containScroll="false"
 
+        >
+          <CardPreview :card="item" :key="item.id" class="slide" :class="{'active' : index === currentIndex}" />
+        </UCarousel>
 
 
 
@@ -22,7 +29,7 @@
 
       <UInput v-model="deckName" placeholder="Deck name"></UInput>
 
-      <UButton @click="startExport">START EXPORT</UButton>
+      <UButton @click="startExport">Export to PNG</UButton>
 
       <UButton @click="startExportPDF">Export to PDF</UButton>
 
@@ -41,6 +48,7 @@ const deckStore = useDeckStore()
 
 const cards = computed( () => deckStore.cards)
 const currentIndex = ref<number>(0)
+const carousel = useTemplateRef('carousel')
 const deckName = ref<string>('')
 const preview = useTemplateRef<HTMLElement>('cardPreview')
 
@@ -85,6 +93,7 @@ const convertCardToPng = async (card: Card) => {
   const cardObject = await convertToPng(preview.value.rootElement, card.name);
 
   currentIndex.value++;
+  carousel.value?.emblaApi?.scrollTo(currentIndex.value)
   await delay(500); // Attend 500ms avant de continuer
   return cardObject;
 };
@@ -94,8 +103,9 @@ const prepareCardsForPdf = async (card: Card) => {
   await nextTick();
   const cardObject = await prepareCardsPng(preview.value.rootElement, card.name) as string;
 
-  console.log('aaaa')
   currentIndex.value++;
+  console.log(carousel.value)
+  carousel.value?.emblaApi?.scrollTo(currentIndex.value)
   await delay(500); // Attend 500ms avant de continuer
   return cardObject;
 };
@@ -110,4 +120,12 @@ const prepareCardsForPdf = async (card: Card) => {
   width: 60vw;
   aspect-ratio: 2/1.5;
 }
+
+.slide {
+  opacity: .5;
+  &.active {
+    opacity: 1;
+  }
+}
+
 </style>

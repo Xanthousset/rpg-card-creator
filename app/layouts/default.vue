@@ -1,7 +1,8 @@
 <template>
   <UDashboardGroup>
-    <UDashboardSidebar class="bg-gray-800" />
-
+    <UDashboardSidebar class="bg-gray-800" >
+      <SidebarNav/>
+    </UDashboardSidebar>
     <UDashboardPanel>
       <slot />
     </UDashboardPanel>
@@ -10,6 +11,12 @@
 
 <script lang="ts">
 
+import {defineComponent} from "vue";
+import SidebarNav from "~/components/Nav/SidebarNav.vue";
+
+export default defineComponent({
+  components: {SidebarNav}
+})
 </script>
 
 

@@ -32,6 +32,7 @@ const props = defineProps<{
   card: Card
 }>()
 
+console.log(props.card)
 
 
 </script>

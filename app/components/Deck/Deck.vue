@@ -1,7 +1,7 @@
 <template>
   <div class="p-12 h-screen overflow-y-scroll">
-    <div class="w-10/12 grid grid-cols-4 gap-12">
-      <SmallCard v-for="(card , i) in deck" :card="card" @click="openModal(card)"  />
+    <div class="w-10/12 mx-auto grid grid-cols-4 gap-12">
+      <SmallCard v-for="(card , i) in deck" :key="card.id" :card="card" @click="openModal(card)"  />
     </div>
 
     <UModal v-model:open="showModal" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
@@ -16,7 +16,9 @@
       </template>
     </UModal>
 
-    <UButton @click="exportDeck">Export Deck to png</UButton>
+    <div class="fixed bottom-12 right-12">
+      <UButton @click="exportDeck">Export Deck</UButton>
+    </div>
 
   </div>
 </template>
@@ -30,6 +32,7 @@ import { Card } from "~/models/Card"
 const deckStore = useDeckStore();
 
 const deck = computed(() => deckStore.cards);
+console.log(deck.value);
 const showModal = ref<boolean>(false);
 const showExport = ref<boolean>(false);
 const activeCard = ref<Card>()

@@ -4,6 +4,7 @@ import { Card } from '~/models/Card';
 
 export const useDeckStore = defineStore('deck', () => {
   const cards = reactive<Card[]>([]);
+  const editingCard = ref<Card>(undefined)
 
   function addCard(card: Card) {
     cards.push(reactive(card));
@@ -16,6 +17,31 @@ export const useDeckStore = defineStore('deck', () => {
 
   function getCardById(id: string): Card | undefined {
     return cards.find(c => c.id === id);
+  }
+
+  function setEditingCard(card: Card) {
+    editingCard.value = card
+  }
+
+  function updateCard(updatedCard: Card) {
+
+    const index = cards.findIndex(card => card.id === updatedCard.id);
+
+    if (index !== -1) {
+      // Reconstruit une instance de Card avec les données mises à jour
+      cards[index] = new Card(
+        updatedCard.name,
+        updatedCard.image,
+        updatedCard.description,
+        updatedCard.cost
+      );
+      // Copie les propriétés optionnelles
+      cards[index].id = updatedCard.id;
+      cards[index].level = updatedCard.level;
+      cards[index].icon = updatedCard.icon;
+      cards[index].defense = updatedCard.defense;
+    }
+
   }
 
   function duplicateCard(id: string , nb: number = 1) {
@@ -38,5 +64,14 @@ export const useDeckStore = defineStore('deck', () => {
     }
   }
 
-  return { cards, addCard, removeCard, getCardById , duplicateCard };
+  return {
+    cards,
+    editingCard,
+    addCard,
+    removeCard,
+    updateCard,
+    getCardById,
+    setEditingCard,
+    duplicateCard
+  };
 });
