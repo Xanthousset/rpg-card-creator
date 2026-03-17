@@ -15,8 +15,10 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  ssr: true,
+
   routeRules: {
-    '/': { prerender: true }
+    '/': { ssr: true }
   },
 
   compatibilityDate: '2025-01-15',
@@ -28,5 +30,6 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
-  }
+  },
+
 })

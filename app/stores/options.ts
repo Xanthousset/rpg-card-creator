@@ -4,22 +4,39 @@ import { reactive } from 'vue';
 export const useOptionsStore = defineStore('options', () => {
 
   type Options = {
-    borderWidth: number
     borderRadius: number
-    backgroundColor: string
-    borderColor: string
+    front: {
+      borderWidth: number
+      backgroundColor: string
+      borderColor: string
+    }
+    back: {
+      borderWidth: number
+      backgroundColor: string
+      borderColor: string
+    }
   }
 
+  const isFront = ref<boolean>(true)
+
   const options = reactive<Options>({
-    borderWidth : 0,
     borderRadius : 5,
-    backgroundColor : '#000',
-    borderColor : '#fff',
+    front: {
+      borderWidth : 0,
+      backgroundColor : '#000',
+      borderColor : '#fff',
+    },
+    back: {
+      borderWidth : 0,
+      backgroundColor : '#000',
+      borderColor : '#fff',
+    }
   });
 
 
 
   return {
     options,
+    isFront
   };
 });

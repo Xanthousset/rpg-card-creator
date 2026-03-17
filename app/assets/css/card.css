@@ -1,16 +1,44 @@
 :root {
-  --card-bg: #000;
-  --card-border-color: #fff;
-  --card-border-width : 1px;
-  --card-border : solid var(--card-border-width) var(--card-border-color);
   --card-radius : 5%;
+
+  --card-f-border-color: #fff;
+  --card-f-border-width : 1px;
+  --card-f-bg: #000;
+  --card-f-border : solid var(--card-f-border-width) var(--card-f-border-color);
+
+  --card-b-border-color: #fff;
+  --card-b-border-width : 1px;
+  --card-b-bg: #000;
+  --card-b-border : solid var(--card-b-border-width) var(--card-b-border-color);
+
 }
 
 .card {
-  background-color: var(--card-bg);
-  border: var(--card-border);
+  container-type: inline-size;
+  background-color: var(--card-f-bg);
+  border: var(--card-f-border);
   border-radius: var(--card-radius);
   aspect-ratio: 2.5/3.5;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-back {
+  container-type: inline-size;
+  background-color: var(--card-b-bg);
+  border: var(--card-b-border);
+  border-radius: var(--card-radius);
+  aspect-ratio: 2.5/3.5;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.card-name {
+  font-size: 10cqw;
+}
+
+.card-text {
+  font-size: 3cqw;
 }
 
 .card-ratio {

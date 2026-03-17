@@ -6,8 +6,8 @@
     <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
 
     <div class="text-center p-4">
-      <div class=" mb-4 text-xl"> {{ card.name }} </div>
-      <div> {{ card.description }} </div>
+      <div class=" mb-4 card-name"> {{ card.name }} </div>
+      <div class="card-text" v-html="card.description"></div>
     </div>
 
   </div>

@@ -9,6 +9,7 @@ export class Card {
   public cost?: number | null;
   public defense?: string | null | undefined;
 
+
   constructor(name: string = '', image: string | File | undefined = undefined, description: string = '', cost: number | null = null) {
     this.id = crypto.randomUUID();
     this.name = name;
@@ -26,6 +27,5 @@ export class Card {
     }
     return URL.createObjectURL(this.image)
   }
-
 
 }

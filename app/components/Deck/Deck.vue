@@ -2,6 +2,7 @@
   <div class="p-12 h-screen overflow-y-scroll">
     <div class="w-10/12 mx-auto grid grid-cols-4 gap-12">
       <SmallCard v-for="(card , i) in deck" :key="card.id" :card="card" @click="openModal(card)"  />
+      <SmallBackCard />
     </div>
 
     <UModal v-model:open="showModal" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
@@ -28,6 +29,7 @@ import SmallCard from "~/components/Cards/SmallCard.vue";
 import DeckModal from "~/components/Deck/DeckModal.vue";
 import ExportModal from "~/components/Deck/ExportModal.vue";
 import { Card } from "~/models/Card"
+import SmallBackCard from "~/components/Cards/SmallBackCard.vue";
 
 const deckStore = useDeckStore();
 

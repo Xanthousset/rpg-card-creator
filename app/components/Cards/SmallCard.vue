@@ -5,9 +5,9 @@
 
       <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
 
-      <div class="text-center p-4">
-        <div class=" mb-4 text-xl"> {{ card.name }} </div>
-        <div> {{ card.description }} </div>
+      <div class="w-full text-center p-4">
+        <div class="w-full mb-4 card-name"> {{ card.name }} </div>
+        <div class="card-text" v-html="card.description"></div>
       </div>
 
     </div>
@@ -32,11 +32,10 @@ const props = defineProps<{
   card: Card
 }>()
 
-console.log(props.card)
-
-
 </script>
 
 <style scoped>
-
+.card-text {
+  font-size: 5cqw;
+}
 </style>

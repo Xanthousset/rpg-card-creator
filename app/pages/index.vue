@@ -6,5 +6,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import CardEditor from "~/components/Cards/CardEditor.vue";
+import CardEditor from "~/components/Editor/CardEditor.vue";
+
 </script>

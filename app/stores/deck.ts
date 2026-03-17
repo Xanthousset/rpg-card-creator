@@ -5,6 +5,7 @@ import { Card } from '~/models/Card';
 export const useDeckStore = defineStore('deck', () => {
   const cards = reactive<Card[]>([]);
   const editingCard = ref<Card>()
+  const backImage = ref<File | string | null>(null);
 
   function addCard(card: Card) {
     cards.push(reactive(card));
@@ -64,6 +65,20 @@ export const useDeckStore = defineStore('deck', () => {
     }
   }
 
+  const createBackCardUrl = computed(() => {
+
+    console.log(backImage.value)
+
+      if(backImage.value === null || backImage.value === undefined) {
+        return '/img/placeholder.png';
+      }
+      if(typeof backImage.value === 'string') {
+        return backImage.value;
+      }
+      return URL.createObjectURL(backImage.value)
+
+  })
+
   return {
     cards,
     editingCard,
@@ -72,6 +87,7 @@ export const useDeckStore = defineStore('deck', () => {
     updateCard,
     getCardById,
     setEditingCard,
-    duplicateCard
+    duplicateCard,
+    createBackCardUrl
   };
 });

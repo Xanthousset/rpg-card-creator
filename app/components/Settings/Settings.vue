@@ -1,77 +1,48 @@
 <template>
   <div class="flex flex-col gap-6">
 
-    <div>
-      <div>Border width</div>
-      <USlider
-        v-model="settings.borderWidth"
-        :min="0"
-        :max="10"
-      />
-    </div>
 
-    <div>
-      <div>Border Radius</div>
-      <USlider
-        v-model="settings.borderRadius"
-        :step=".5"
-        :min="0"
-        :max="10"
-      />
-    </div>
+    <GeneralSettings/>
 
-    <div>
-      <div>Border color</div>
-      <UInput v-model="settings.borderColor" />
-      <UPopover>
-        <UButton label="Choose color" color="neutral" variant="outline">
-          <template #leading>
-            <span :style="chipBorder" class="size-3 rounded-full" />
-          </template>
-        </UButton>
 
-        <template #content>
-          <UColorPicker v-model="settings.borderColor" class="p-2" />
-        </template>
-      </UPopover>
-    </div>
+    <FrontSettings v-show="isFront"/>
 
-    <div>
-      <div>Background color</div>
-      <UInput v-model="settings.backgroundColor" />
-      <UPopover>
-        <UButton label="Choose color" color="neutral" variant="outline">
-          <template #leading>
-            <span :style="chipBg" class="size-3 rounded-full" />
-          </template>
-        </UButton>
 
-        <template #content>
-          <UColorPicker v-model="settings.backgroundColor" class="p-2" />
-        </template>
-      </UPopover>
-    </div>
+    <BackSettings v-show="!isFront"/>
+
+
 
   </div>
 </template>
 
 <script setup lang="ts">
 
+import GeneralSettings from "~/components/Settings/GeneralSettings.vue";
+import FrontSettings from "~/components/Settings/FrontSettings.vue";
+import BackSettings from "~/components/Settings/BackSettings.vue";
+
 const optionsStore = useOptionsStore()
+
+const isFront = computed(() => optionsStore.isFront)
 
 const settings = optionsStore.options
 
-const chipBorder = computed(() => ({ backgroundColor: settings.borderColor }))
-const chipBg = computed(() => ({ backgroundColor: settings.backgroundColor }))
 
 onMounted(() => {
-  var r = document.querySelector(':root');
+  const r = document.querySelector(':root') as HTMLElement;
 
   watch(settings , () => {
-    r?.style.setProperty('--card-border-width', settings.borderWidth+'px');
-    r?.style.setProperty('--card-border-color', settings.borderColor);
-    r?.style.setProperty('--card-radius', settings.borderRadius+"%");
-    r?.style.setProperty('--card-bg', settings.backgroundColor);
+    r.style.setProperty('--card-radius', settings.borderRadius+"%");
+
+    r.style.setProperty('--card-f-border-width', settings.front.borderWidth+'px');
+    r.style.setProperty('--card-f-border-color', settings.front.borderColor);
+    r.style.setProperty('--card-f-bg', settings.front.backgroundColor);
+
+    r.style.setProperty('--card-b-border-width', settings.back.borderWidth+'px');
+    r.style.setProperty('--card-b-border-color', settings.back.borderColor);
+    r.style.setProperty('--card-b-bg', settings.back.backgroundColor);
+
+
   }, { immediate: true })
 
 })
