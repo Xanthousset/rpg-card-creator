@@ -19,7 +19,6 @@ export default defineNuxtConfig({
 
   routeRules: {
     '/': { prerender: true },
-    '/deck': { prerender: true }
   },
 
   compatibilityDate: '2025-01-15',
