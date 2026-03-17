@@ -18,7 +18,8 @@ export default defineNuxtConfig({
   ssr: true,
 
   routeRules: {
-    '/': { ssr: true }
+    '/': { prerender: true },
+    '/deck': { prerender: true }
   },
 
   compatibilityDate: '2025-01-15',
