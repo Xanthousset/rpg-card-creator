@@ -1,9 +1,9 @@
 <template>
   <div class="w-full cursor-pointer hover-3d" >
 
-    <div class="flex flex-col w-full border overflow-hidden card-back">
+    <div class="relative flex flex-col w-full border overflow-hidden card-back">
 
-      <NuxtImg :src="test" />
+      <NuxtImg class="card-back-image" :src="backUrl" />
 
     </div>
 
@@ -24,9 +24,7 @@
 
 const deckStore = useDeckStore()
 
-console.log(deckStore.createBackCardUrl)
-
-const test = computed(() => {
+const backUrl = computed(() => {
 
   const backImage = deckStore.backImage
 

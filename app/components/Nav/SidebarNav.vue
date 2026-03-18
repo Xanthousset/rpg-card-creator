@@ -7,9 +7,14 @@ const items = computed( () =>
   return [
     [
       {
+        label: 'Home',
+        icon: 'i-lucide-home',
+        to: '/',
+      },
+      {
         label: 'Editor',
         icon: 'i-lucide-pen',
-        to: '/',
+        to: '/editor',
       },
       {
         label: 'Deck',

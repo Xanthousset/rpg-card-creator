@@ -19,7 +19,8 @@
 
     <div class="flex flex-col gap-4 items-center">
       <UButton @click="flipCard" > {{ cardSideText }}</UButton>
-      <UButton @click="saveCard" > {{ buttonText }}</UButton>
+      <UButton v-if="isFront" @click="saveCard" > {{ buttonText }}</UButton>
+      <UButton v-else @click="saveBack" > Save back of card </UButton>
       <UButton href="/deck" > DECK </UButton>
     </div>
 
@@ -62,11 +63,9 @@ const cardSideText = computed(() => {
   return 'flip card'
 })
 
-
 function flipCard() {
   optionsStore.isFront = !isFront.value
 }
-
 
 function saveCard(): void {
 
@@ -80,6 +79,8 @@ function saveCard(): void {
   if (props.isEditing) {
     deckStore.updateCard(card.value)
     showToast(`${card.value.name} has been updated`)
+    deckStore.setEditingCard(null)
+    deckStore.isEditing = false
     router.push('/deck')
   } else {
     deckStore.addCard(card.value)
@@ -87,6 +88,14 @@ function saveCard(): void {
     card.value = new Card()
     optionsStore.isFront = true
   }
+
+}
+
+function saveBack(): void {
+
+  errorMessage.value = ''
+  showToast(`Back of card has been updated`)
+  optionsStore.isFront = true
 
 }
 

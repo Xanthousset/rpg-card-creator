@@ -6,6 +6,7 @@ export const useDeckStore = defineStore('deck', () => {
   const cards = reactive<Card[]>([]);
   const editingCard = ref<Card>()
   const backImage = ref<File | string | null>(null);
+  const isEditing = ref<boolean | null>(false);
 
   function addCard(card: Card) {
     cards.push(reactive(card));
@@ -82,6 +83,7 @@ export const useDeckStore = defineStore('deck', () => {
   return {
     cards,
     editingCard,
+    isEditing,
     addCard,
     removeCard,
     updateCard,

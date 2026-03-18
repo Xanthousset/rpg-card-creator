@@ -66,7 +66,7 @@ export const prepareCardsPng = async (node: HTMLElement , name: string ) => {
       backgroundColor: null,
     }).then((canvas) => {
       const dataUrl = canvas.toDataURL('image/png');
-      resolve(dataUrl); // <-- Ici, on appelle resolve avec le résultat !
+      resolve(dataUrl);
     });
   });
 
@@ -77,17 +77,24 @@ export const exportDeckToPDF = async (cards:string[] , name:string = "deck") => 
   const pdf = new jsPDF({
     orientation: 'portrait',
     unit: 'px',
-    format: [2481, 3507], // A4 en pixels à 300 DPI
+    format: [2481, 3507], // A4 in pixels at 300 DPI
     compress: true,
   });
 
-  console.log('ici' , cards, name);
+  // 1. Get back of card (last item)
+  const cardBack = cards.pop();
+  if (!cardBack) {
+    console.error("No back of card found !");
+    return;
+  }
 
-  // Ajoute les cartes au PDF en grille 3x3
-  const margin = 50; // Marge entre les cartes
-  const xStart = (2481 - (3 * 750 + 2 * margin)) / 2; // Centrage horizontal
-  const yStart = (3507 - (3 * 1050 + 2 * margin)) / 2; // Centrage vertical
+  // 2.Setup PDF template
+  // grid 3x3
+  const margin = 50;
+  const xStart = (2481 - (3 * 750 + 2 * margin)) / 2; // Center X
+  const yStart = (3507 - (3 * 1050 + 2 * margin)) / 2; // Center Y
 
+  // 3. Cards loop
   let x = xStart;
   let y = yStart;
   let pageNumber = 0;
@@ -97,11 +104,11 @@ export const exportDeckToPDF = async (cards:string[] , name:string = "deck") => 
     if (i > 0 && i % 9 === 0) {
       pdf.addPage([2481, 3507], 'portrait'); // Ajoute une nouvelle page A4
       pageNumber++;
-      x = xStart; // Réinitialise x
-      y = yStart; // Réinitialise y
+      x = xStart; // Reset x
+      y = yStart; // Reset y
     }
 
-    // Si on commence une nouvelle ligne (toutes les 3 cartes)
+    // New row (every 3 cards)
     else if (i > 0 && i % 3 === 0) {
       x = xStart;
       y += 1050 + margin;
@@ -111,7 +118,26 @@ export const exportDeckToPDF = async (cards:string[] , name:string = "deck") => 
     x += 750 + margin;
   }
 
-  // Sauvegarde le PDF
+  // 4. Final page with 9x Back of card
+  pdf.addPage([2481, 3507], 'portrait');
+  x = xStart;
+  y = yStart;
+
+  for (let i = 0; i < 9; i++) {
+    if (i > 0 && i % 3 === 0) {
+      x = xStart;
+      y += 1050 + margin;
+    }
+    pdf.addImage(cardBack, 'PNG', x, y, 750, 1050);
+    x += 750 + margin;
+  }
+
+  // 5. Save PDF
+
+  if (name === "") {
+    name = "deck";
+  }
+
   pdf.save(`${name}.pdf`);
 
 }

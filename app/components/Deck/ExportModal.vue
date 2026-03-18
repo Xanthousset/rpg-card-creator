@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-black flex flex-col items-center gap-24 rounded-2xl p-12" id="deck-modal">
-    <div v-if="progress != 100" class="h-10/12">
+    <div v-if="progress != 100" class="w-full h-10/12">
 
         <UCarousel v-slot="{ item , index }"
                    :items="cards"
@@ -20,7 +20,8 @@
       Export fini
     </div>
 
-    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPreview" />
+    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />
+    <PrintBack ref="backPrint"/>
 
 
     <div class="h-2/12">
@@ -43,6 +44,7 @@ import { Card } from '~/models/Card'
 import CardPreview from "~/components/Cards/CardPreview.vue";
 import {convertToPng, exportDeckToPDF, prepareCardsPng, zipAndDownload} from "~/composables/useExports";
 import PrintCard from "~/components/Cards/PrintCard.vue";
+import PrintBack from "~/components/Cards/Back/PrintBack.vue";
 
 const deckStore = useDeckStore()
 
@@ -50,7 +52,8 @@ const cards = computed( () => deckStore.cards)
 const currentIndex = ref<number>(0)
 const carousel = useTemplateRef('carousel')
 const deckName = ref<string>('')
-const preview = useTemplateRef<HTMLElement>('cardPreview')
+const cardPrintRef = useTemplateRef<HTMLElement>('cardPrint')
+const backPrintRef = useTemplateRef<HTMLElement>('backPrint')
 
 const progress = computed(() => {
 
@@ -63,55 +66,54 @@ const progress = computed(() => {
 })
 
 const currentCard = computed(() => cards.value[currentIndex.value])
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const startExport = async () => {
   const deckFiles = [];
   for (const card of cards.value) {
-    const file = await convertCardToPng(card);
+    const file = await convertCardToPng(cardPrintRef.value.rootElement , card.name);
     deckFiles.push(file);
   }
+
+  const backFile = await convertCardToPng(backPrintRef.value.rootElement, backPrintRef.value.name)
+
+  deckFiles.push(backFile);
+
   zipAndDownload(deckFiles , deckName.value);
 };
 
 const startExportPDF = async () => {
   const deckFiles = [];
   for (const card of cards.value) {
-    const file = await prepareCardsForPdf(card);
+    const file = await prepareCardsForPdf(cardPrintRef.value.rootElement , card.name);
     deckFiles.push(file);
   }
-  console.log(deckFiles);
+
+  const backFile = await prepareCardsForPdf(backPrintRef.value.rootElement, backPrintRef.value.name)
+  deckFiles.push(backFile);
 
   await exportDeckToPDF(deckFiles , deckName.value)
-
 };
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-const convertCardToPng = async (card: Card) => {
+const convertCardToPng = async (element : HTMLElement , name: string) => {
   // Attends que le composant soit mis à jour avec la bonne carte
   await nextTick();
-  const cardObject = await convertToPng(preview.value.rootElement, card.name);
-
+  const cardObject = await convertToPng(element, name);
   currentIndex.value++;
   carousel.value?.emblaApi?.scrollTo(currentIndex.value)
   await delay(500); // Attend 500ms avant de continuer
   return cardObject;
 };
 
-const prepareCardsForPdf = async (card: Card) => {
+const prepareCardsForPdf = async (element: HTMLElement, name: string) => {
   // Attends que le composant soit mis à jour avec la bonne carte
   await nextTick();
-  const cardObject = await prepareCardsPng(preview.value.rootElement, card.name) as string;
-
+  const cardObject = await prepareCardsPng(element, name) as string;
   currentIndex.value++;
-  console.log(carousel.value)
   carousel.value?.emblaApi?.scrollTo(currentIndex.value)
   await delay(500); // Attend 500ms avant de continuer
   return cardObject;
 };
-
-
-
 
 </script>
 
