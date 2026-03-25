@@ -1,0 +1,2 @@
+Contour/Fond Marron = #413D37
+Contour/Fond blanc cassé = #F1F1F1

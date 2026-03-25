@@ -1,0 +1,13 @@
+@font-face {
+  font-family: gwent;
+  src: url("../fonts/gwent.woff2");
+}
+
+/*@font-face {*/
+/*  font-family: baskerville;*/
+/*  src: url("../fonts/Baskervville-VariableFont_wght.ttf") format("truetype supports variations");*/
+/*}*/
+
+.font-title {
+  font-family: gwent , sans-serif;
+}

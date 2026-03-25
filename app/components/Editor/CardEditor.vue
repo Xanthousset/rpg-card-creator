@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full h-full flex justify-center items-center gap-12">
+  <div class="w-full h-full flex flex-col justify-center items-center gap-12">
 
 
 
@@ -17,11 +17,34 @@
       {{ errorMessage }}
     </div>
 
-    <div class="flex flex-col gap-4 items-center">
-      <UButton @click="flipCard" > {{ cardSideText }}</UButton>
-      <UButton v-if="isFront" @click="saveCard" > {{ buttonText }}</UButton>
-      <UButton v-else @click="saveBack" > Save back of card </UButton>
-      <UButton href="/deck" > DECK </UButton>
+    <div class="flex gap-12 justify-center items-center">
+
+      <div class="flex items-center gap-2 flex-col cursor-pointer" @click="flipCard" >
+
+        <img class="w-12" src="~/assets/img/witcher/Pictos_Boutons/Bouton_Flip.svg" />
+        <button class="cursor-pointer">{{ cardSideText }}</button>
+
+      </div>
+
+      <div class="flex items-center gap-2 flex-col cursor-pointer" v-if="isFront" @click="saveCard" >
+
+        <img class="w-12" src="~/assets/img/witcher/Pictos_Boutons/Bouton_Add_to_deck.svg" />
+        <button>{{ buttonText }}</button>
+
+      </div>
+
+      <div class="flex items-center gap-2 flex-col cursor-pointer" v-else @click="saveBack" >
+
+        <img class="w-12" src="~/assets/img/witcher/Pictos_Boutons/Bouton_Add_to_deck.svg" />
+        <button>Save changes</button>
+
+      </div>
+
+      <NuxtLink to="/deck" class="flex items-center gap-2 flex-col cursor-pointer">
+        <img class="w-12" src="~/assets/img/witcher/Pictos_Boutons/Bouton_View_deck.svg" />
+        View Deck
+      </NuxtLink>
+
     </div>
 
 
@@ -60,7 +83,7 @@ const errorMessage = ref<string>()
 const isFront = computed(() => optionsStore.isFront)
 
 const cardSideText = computed(() => {
-  return 'flip card'
+  return 'Flip card'
 })
 
 function flipCard() {
@@ -104,6 +127,7 @@ function saveBack(): void {
 <style scoped>
 .perspective-container {
   width: 33.3%;
+  min-width: 350px;
   perspective: 100em; /* creates an illusion of depth */
   perspective-origin: center;
 }

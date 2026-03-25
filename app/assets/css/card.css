@@ -1,20 +1,21 @@
 :root {
   --card-radius : 5%;
 
-  --card-f-border-color: #fff;
+  --card-f-border-color: #F1F1F1;
   --card-f-border-width : 1px;
-  --card-f-bg: #000;
+  --card-f-bg: #F1F1F1;
   --card-f-border : solid var(--card-f-border-width) var(--card-f-border-color);
 
-  --card-b-border-color: #fff;
+  --card-b-border-color: #F1F1F1;
   --card-b-border-width : 1px;
-  --card-b-bg: #000;
+  --card-b-bg: #F1F1F1;
   --card-b-border : solid var(--card-b-border-width) var(--card-b-border-color);
 
 }
 
 .card {
   container-type: inline-size;
+  font-family: Baskervville , serif;
   background-color: var(--card-f-bg);
   border: var(--card-f-border);
   border-radius: var(--card-radius);
@@ -44,11 +45,16 @@
 }
 
 .card-name {
-  font-size: 10cqw;
+  font-size: 7.5cqw;
+  font-family: gwent , serif;
 }
 
 .card-text {
-  font-size: 3cqw;
+  font-size: 5cqw;
+}
+
+.card-info {
+  font-size: 4cqw;
 }
 
 .card-ratio {
@@ -58,6 +64,16 @@
 .no-rounded {
   * {
     border-radius: unset !important;
+  }
+}
+
+.tiptap .is-empty {
+  text-align: center;
+  &::before {
+    float: unset;
+    color: #413D37;
+    font-weight: 700;
+    font-style: italic;
   }
 }
 

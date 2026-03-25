@@ -23,13 +23,13 @@ export const useOptionsStore = defineStore('options', () => {
     borderRadius : 5,
     front: {
       borderWidth : 0,
-      backgroundColor : '#000',
-      borderColor : '#fff',
+      backgroundColor : '#F1F1F1',
+      borderColor : '#F1F1F1',
     },
     back: {
       borderWidth : 0,
-      backgroundColor : '#000',
-      borderColor : '#fff',
+      backgroundColor : '#F1F1F1',
+      borderColor : '#F1F1F1',
     }
   });
 

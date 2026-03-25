@@ -1,0 +1,2 @@
+Gwent = font principale (nom du sort, niveau, etc...)
+Baskerville = font secondaire (effet, coût, etc...)

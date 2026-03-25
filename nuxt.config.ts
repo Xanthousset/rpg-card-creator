@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/test-utils',
+    '@nuxt/fonts',
     '@pinia/nuxt'
   ],
 
@@ -31,5 +32,11 @@ export default defineNuxtConfig({
       }
     }
   },
+
+  fonts: {
+    families: [
+      { name: 'Baskervville', provider: 'google' },
+    ]
+  }
 
 })
