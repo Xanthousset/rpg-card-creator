@@ -34,7 +34,6 @@ import SmallBackCard from "~/components/Cards/Back/SmallBackCard.vue";
 const deckStore = useDeckStore();
 
 const deck = computed(() => deckStore.cards);
-console.log(deck.value);
 const showModal = ref<boolean>(false);
 const showExport = ref<boolean>(false);
 const isBack = ref<boolean>(false);
