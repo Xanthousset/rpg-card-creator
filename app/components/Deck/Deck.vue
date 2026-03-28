@@ -48,6 +48,7 @@ const openModal = (card:Card):void => {
 const openBack = () => {
   showModal.value = true;
   isBack.value = true;
+  activeCard.value = undefined;
 }
 
 const deleteCard = ():void => {

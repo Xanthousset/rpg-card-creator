@@ -1,6 +1,6 @@
 <template>
   <div class="relative bg-black flex gap-24 rounded-2xl p-12" id="deck-modal">
-    <div v-if="card">
+    <div v-if="card && !isBack">
       <CardPreview v-if="card" :card="card" />
       <PrintCard v-if="card" :card="card" ref="cardPrint" />
     </div>
