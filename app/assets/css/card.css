@@ -11,6 +11,12 @@
   --card-b-bg: #F1F1F1;
   --card-b-border : solid var(--card-b-border-width) var(--card-b-border-color);
 
+  --bottom-shape : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  --bottom-shape-print : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  --bottom-shape-border : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  --bottom-shape-cadre : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  --bottom-shape-content : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+
 }
 
 .card {
@@ -22,6 +28,16 @@
   aspect-ratio: 2.5/3.5;
   position: relative;
   transform-style: preserve-3d;
+}
+
+.card-img-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .card-back {
@@ -50,11 +66,18 @@
 }
 
 .card-text {
-  font-size: 5cqw;
+  font-size: 4cqw;
 }
 
 .card-info {
   font-size: 4cqw;
+}
+
+.card-attribute {
+  font-size: 3cqw;
+  width: 75%;
+  padding: 2.5px 5px;
+  white-space: nowrap;
 }
 
 .card-ratio {

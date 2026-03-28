@@ -28,6 +28,7 @@ export const saveAsPng = (node: HTMLElement , name: string) => {
     width: 750,
     height: 1050,
     scale: 1,
+    removeContainer: true,
     backgroundColor: null,
   }).then((canvas) => {
     canvas.toBlob((blob) => {

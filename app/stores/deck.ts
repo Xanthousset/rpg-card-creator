@@ -6,6 +6,7 @@ export const useDeckStore = defineStore('deck', () => {
   const cards = reactive<Card[]>([]);
   const editingCard = ref<Card>()
   const backImage = ref<File | string | null>(null);
+  const backImageUrl = ref<string | null>(null);
   const isEditing = ref<boolean | null>(false);
 
   function addCard(card: Card) {
@@ -41,6 +42,9 @@ export const useDeckStore = defineStore('deck', () => {
       cards[index].id = updatedCard.id;
       cards[index].level = updatedCard.level;
       cards[index].icon = updatedCard.icon;
+      cards[index].element = updatedCard.element;
+      cards[index].range = updatedCard.range;
+      cards[index].duration = updatedCard.duration;
       cards[index].defense = updatedCard.defense;
     }
 
@@ -61,17 +65,22 @@ export const useDeckStore = defineStore('deck', () => {
       if (originalCard.level !== undefined) newCard.level = originalCard.level;
       if (originalCard.icon !== undefined) newCard.icon = originalCard.icon;
       if (originalCard.defense !== undefined) newCard.defense = originalCard.defense;
+      if (originalCard.duration !== undefined) newCard.duration = originalCard.duration;
+      if (originalCard.range !== undefined) newCard.range = originalCard.range;
+      if (originalCard.element !== undefined) newCard.element = originalCard.element;
 
       addCard(newCard);
     }
   }
 
+
+
   const createBackCardUrl = computed(() => {
 
-    console.log(backImage.value)
+    console.log('ici' , backImage.value)
 
       if(backImage.value === null || backImage.value === undefined) {
-        return '/img/placeholder.png';
+        return '/img/templates/witcher/back-default.png';
       }
       if(typeof backImage.value === 'string') {
         return backImage.value;
@@ -84,6 +93,7 @@ export const useDeckStore = defineStore('deck', () => {
     cards,
     editingCard,
     isEditing,
+    backImage,
     addCard,
     removeCard,
     updateCard,

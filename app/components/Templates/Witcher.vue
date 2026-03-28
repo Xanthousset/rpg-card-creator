@@ -5,25 +5,28 @@
 
       <div class="losange">
         <div>
-          <UInput v-model="card.name" variant="none" size="sm" placeholder="Cost" :ui="{'base' : 'text-center card-info'}" />
+          <UInput v-model="card.cost" variant="none" size="sm" placeholder="Cost" :ui="{'base' : 'text-center font-bold witcher-text-color card-info'}" />
         </div>
       </div>
 
       <div class="flex justify-center w-full ">
-        <UInput v-model="card.name" variant="none" size="sm" placeholder="Card name" :ui="{'base' : 'text-center text-white card-name'}" />
+        <UInput v-model="card.name" variant="none" size="sm" placeholder="Card name" :ui="{'base' : 'placeholder:text-white text-center text-white card-name'}" />
       </div>
 
       <div class="losange right">
         <div>
-          <UInput v-model="card.name" variant="none" size="sm" placeholder="Element" :ui="{'base' : 'text-center card-info'}" />
+          <UInput v-model="card.element" variant="none" size="sm" placeholder="Element" :ui="{'base' : 'text-center font-bold witcher-text-color card-info'}" />
         </div>
       </div>
 
     </div>
 
     <div class="aspect-square w-full image-container">
-      <div class="rounded-full overflow-hidden aspect-square w-full ">
-        <UFileUpload v-model="card.image" class="w-full aspect-square" :ui="{base: 'rounded-full' , file: 'rounded-full'}" />
+      <div class="rounded-full overflow-hidden aspect-square w-full">
+
+        <NuxtImg class="rounded-full card-img-placeholder" src="/img/templates/witcher/front-default.svg" />
+
+        <UFileUpload v-model="card.image" class="w-full aspect-square" :ui="{base: 'bg-transparent cursor-pointer rounded-full' , file: 'rounded-full'}" />
       </div>
     </div>
 
@@ -47,19 +50,24 @@
 
 
       <div class="level__container">
-        <UInput v-model="card.name" variant="none" size="sm" placeholder="Level" :ui="{'base' : 'text-center text-white card-info font-title'}" />
+        <UInput v-model="card.level" variant="none" size="sm" placeholder="Level" :ui="{'base' : 'placeholder:text-white text-center text-white card-info font-title'}" />
       </div>
 
       <div class="defense__container">
-        <UInput v-model="card.name" variant="none" size="sm" placeholder="Defense type" :ui="{'base' : 'text-center text-white card-info font-title'}" />
+        <UInput v-model="card.defense" variant="none" size="sm" placeholder="Defense type" :ui="{'base' : 'placeholder:text-white text-center text-white card-info font-title'}" />
       </div>
 
       <div class="duration__container">
-<!--        <UInput v-model="card.name" variant="none" size="sm" placeholder="Duration" :ui="{'base' : 'text-center text-white card-info'}" />-->
+
+        <div class="duration__content">
+          <UInput v-model="card.duration" variant="none" size="sm" placeholder="Duration" :ui="{'base' : 'placeholder:text-white text-left font-title text-white card-attribute'}" />
+        </div>
       </div>
 
       <div class="range__container">
-<!--        <UInput v-model="card.name" variant="none" size="sm" placeholder="Duration" :ui="{'base' : 'text-center text-white card-info'}" />-->
+        <div class="range__content">
+          <UInput v-model="card.range" variant="none" size="sm" placeholder="Range" :ui="{'root': 'justify-end' , 'base' : 'placeholder:text-white text-right font-title text-white card-attribute'}" />
+        </div>
       </div>
 
     </div>
@@ -74,24 +82,28 @@ import {Card} from "~/models/Card";
 const props = defineProps<{
   card: Card
 }>()
+
+
 </script>
 
-<style scoped>
+<style >
 
 .witcher {
 
-  --white: #F1F1F1;
-  --brown: #413D37;
-  --petit-bandeau: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
-
-  padding: 20px 10px;
+  padding: 5%;
   background-color: var(--white);
   color: var(--brown);
+  background-image: url("~/assets/img/witcher/bg/front_bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+
 
 }
 
 .image-container {
   position: relative;
+  margin-top: 15px;
   z-index: 2;
   &::before {
     content: '';
@@ -106,7 +118,6 @@ const props = defineProps<{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
-    mix-blend-mode: multiply;
     z-index: -1;
   }
 
@@ -116,8 +127,8 @@ const props = defineProps<{
   position: relative;
   z-index: 3;
   background-color: var(--brown);
-  width: 80%;
-  margin: 0 auto 15px;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .losange {
@@ -133,6 +144,11 @@ const props = defineProps<{
   background-color: var(--white);
   border: solid 2px var(--brown);
   z-index: 2;
+  input {
+    &::placeholder{
+      color: var(--brown);
+    }
+  }
   &.right {
     left: unset;
     right: 0;
@@ -160,12 +176,11 @@ const props = defineProps<{
 }
 
 .bottom-block {
-  --bottom-shape : polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
   position: absolute;
-  width: calc(100% - 80px);
+  width: calc(90%);
   aspect-ratio: 4/2;
-  bottom: 40px;
-  left: 40px;
+  bottom: 5%;
+  left: 5%;
   z-index: 5;
 }
 
@@ -199,7 +214,7 @@ const props = defineProps<{
     height: calc(100% - 4px);
     background-color: var(--brown);
     clip-path: var(--bottom-shape);
-    z-index: -2;
+    z-index: -1;
   }
   &::after {
     content: '';
@@ -211,7 +226,11 @@ const props = defineProps<{
     height: calc(100% - 6px);
     background-color: var(--white);
     clip-path: var(--bottom-shape);
-    z-index: -1;
+    z-index: 1;
+  }
+  div {
+    position: relative;
+    z-index: 3;
   }
 }
 
@@ -219,6 +238,7 @@ const props = defineProps<{
   position: absolute;
   top: 0;
   left: 50%;
+  width: 50%;
   background-color: var(--brown);
   transform: translate(-50%, -50%);
   clip-path: var(--petit-bandeau);
@@ -229,6 +249,7 @@ const props = defineProps<{
   position: absolute;
   bottom: 0;
   left: 50%;
+  width: 50%;
   transform: translate(-50%, 50%);
   z-index: 10;
   &::before {
@@ -246,18 +267,51 @@ const props = defineProps<{
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 45px;
-  height: 45px;
-  transform: translate(-50%, 50%);
+  width: 20%;
+  transform: translateY(50%);
   z-index: 10;
   &::before {
     content: url("~/assets/img/witcher/Picto_durée/Picto_durée_entier.svg");
     display: block;
     position: absolute;
+    width: 8cqw;
+    height: 8cqw;
     top: 50%;
-    left: 50%;
-    width: 100%;
+    left: 0;
     transform: translate(-50%, -50%);
+    z-index: 3;
+  }
+}
+
+.duration__content {
+  width: 100%;
+  padding-left: 4cqw;
+  z-index: 1;
+  div {
+    position: relative;
+    z-index: 5;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    left: 0;
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    background-color: var(--white);
+    clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0 100%, 0 0);
+    z-index: 2;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--brown);
+    clip-path: polygon(85% 0, 100% 50%, 85% 100%, 0 100%, 0 0);
+    z-index: 2;
   }
 }
 
@@ -265,18 +319,51 @@ const props = defineProps<{
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 45px;
-  height: 45px;
-  transform: translate(50%, 50%);
+  width: 20%;
+  transform: translateY(50%);
   z-index: 10;
   &::before {
     content: url("~/assets/img/witcher/Picto_Range/Picto_range_entier.svg");
     display: block;
     position: absolute;
+    width: 8cqw;
+    height: 8cqw;
     top: 50%;
-    left: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    z-index: 3;
+  }
+}
+
+.range__content {
+  width: 100%;
+  z-index: 1;
+  padding-right: 4cqw;
+  div {
+    position: relative;
+    z-index: 5;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1.5px;
+    left: 0;
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    background-color: var(--white);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0 50%);
+    z-index: 2;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    transform: translate(-50%, -50%);
+    height: 100%;
+    background-color: var(--brown);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0 50%);
+    z-index: 2;
   }
 }
 </style>

@@ -28,7 +28,7 @@ const items = computed( () =>
 </script>
 
 <template>
-  <div>
+  <div class="">
 
 
 

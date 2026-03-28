@@ -3,12 +3,7 @@
 
   <div class="overflow-hidden card" ref="rootElement">
 
-    <NuxtImg class="w-full h-6/12 object-center object-cover" :src="card.createImageUrl()"/>
-
-    <div class="text-center p-4">
-      <div class=" mb-4 card-name"> {{ card.name }} </div>
-      <div class="card-text" v-html="card.description"></div>
-    </div>
+    <WitcherRender :card="card" />
 
   </div>
 
@@ -17,6 +12,7 @@
 <script setup lang="ts">
 
 import { Card } from '~/models/Card'
+import WitcherRender from "~/components/Templates/WitcherRender.vue";
 
 const props = defineProps<{
   card: Card

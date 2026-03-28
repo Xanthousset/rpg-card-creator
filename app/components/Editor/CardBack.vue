@@ -2,8 +2,10 @@
 
     <div class="flex flex-col w-full border  overflow-hidden card-back">
 
+      <NuxtImg class="card-back-image" :src="backUrl" />
+
       <div class="w-full h-full">
-        <UFileUpload v-model="deckStore.backImage" class="w-full h-full min-h-48" :ui="{base: 'rounded-none' , file: 'no-rounded'}" />
+        <UFileUpload v-model="deckStore.backImage" class="w-full h-full min-h-48" :ui="{base: 'rounded-none bg-transparent cursor-pointer' , file: 'no-rounded'}" />
       </div>
 
     </div>
@@ -20,6 +22,7 @@ const props = defineProps<{
 
 const deckStore = useDeckStore()
 
+const backUrl = computed(() => deckStore.createBackCardUrl)
 
 </script>
 

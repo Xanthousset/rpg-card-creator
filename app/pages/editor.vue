@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center bg-red items-center w-full h-full">
+  <div class="flex justify-center items-center w-full h-full">
     <client-only>
       <CardEditor :isEditing="isEditing" :editingCard="editedCard" />
     </client-only>

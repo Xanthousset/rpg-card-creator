@@ -21,19 +21,8 @@ defineExpose({
   name
 })
 
-const backUrl = computed(() => {
+const backUrl = computed(() => deckStore.createBackCardUrl)
 
-  const backImage = deckStore.backImage
-
-  if(backImage === null || backImage === undefined) {
-    return '/img/placeholder.png';
-  }
-  if(typeof backImage === 'string') {
-    return backImage;
-  }
-  return URL.createObjectURL(backImage)
-
-})
 
 </script>
 

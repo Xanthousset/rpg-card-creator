@@ -20,7 +20,7 @@
       Export fini
     </div>
 
-    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />
+<!--    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />-->
     <PrintBack ref="backPrint"/>
 
 
@@ -118,7 +118,9 @@ const prepareCardsForPdf = async (element: HTMLElement, name: string) => {
 </script>
 
 <style scoped>
+
 #deck-modal {
+  overflow: visible;
   width: 60vw;
   aspect-ratio: 2/1.5;
 }

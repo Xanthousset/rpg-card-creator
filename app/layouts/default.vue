@@ -1,10 +1,10 @@
 <template>
   <UDashboardGroup>
-    <UDashboardSidebar class="bg-gray-800" >
+    <UDashboardSidebar class="bg-shark-800" >
       <SidebarNav/>
       <Settings/>
     </UDashboardSidebar>
-    <UDashboardPanel>
+    <UDashboardPanel class="bg-shark-950">
       <slot />
     </UDashboardPanel>
   </UDashboardGroup>

@@ -5,9 +5,12 @@ export class Card {
   public image:  File | string | undefined;
   public description: string;
   public level?: number | null;
-  public icon?: string | File | null;
   public cost?: number | null;
+  public element?: string | File | null;
+  public icon?: string | File | null;
   public defense?: string | null | undefined;
+  public range?: string | null | undefined;
+  public duration?: string | null | undefined;
 
 
   constructor(name: string = '', image: string | File | undefined = undefined, description: string = '', cost: number | null = null) {
