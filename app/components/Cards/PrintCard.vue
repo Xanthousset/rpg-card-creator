@@ -3,7 +3,7 @@
 
   <div class="overflow-hidden print-card card" ref="rootElement">
 
-    <WitcherRender :card="card" print />
+    <WitcherPrint :card="card" />
 
   </div>
 
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 
 import { Card } from '~/models/Card'
-import WitcherRender from "~/components/Templates/WitcherRender.vue";
+import WitcherPrint from "~/components/Templates/WitcherPrint.vue";
 
 const props = defineProps<{
   card: Card

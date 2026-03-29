@@ -20,7 +20,7 @@
       Export fini
     </div>
 
-<!--    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />-->
+    <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />
     <PrintBack ref="backPrint"/>
 
 
