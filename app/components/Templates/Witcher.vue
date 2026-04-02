@@ -26,7 +26,10 @@
 
         <NuxtImg class="rounded-full card-img-placeholder" src="/img/templates/witcher/front-default.svg" />
 
-        <UFileUpload v-model="card.image" class="w-full aspect-square" :ui="{base: 'bg-transparent cursor-pointer rounded-full' , file: 'rounded-full'}" />
+        <UFileUpload v-if="!card.image" v-model="card.image" class="w-full aspect-square" :ui="{base: 'bg-transparent cursor-pointer rounded-full' , file: 'rounded-full'}" />
+
+        <ImagePreview v-if="card.image" :card="card" />
+
       </div>
     </div>
 
@@ -78,6 +81,7 @@
 
 import {editorToolBarItems} from "~/utils/UiSettings";
 import {Card} from "~/models/Card";
+import ImagePreview from "~/components/Editor/ImagePreview.vue";
 
 const props = defineProps<{
   card: Card
@@ -86,7 +90,7 @@ const props = defineProps<{
 
 </script>
 
-<style >
+<style>
 
 .witcher {
 
@@ -366,4 +370,6 @@ const props = defineProps<{
     z-index: 2;
   }
 }
+
+
 </style>

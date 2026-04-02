@@ -23,7 +23,8 @@
 
     <div class="aspect-square w-full image-container">
       <div class="rounded-full overflow-hidden aspect-square w-full ">
-        <NuxtImg class="w-full aspect-square object-center object-cover" :src="card.createImageUrl()"/>
+        <NuxtImg class="w-full aspect-square object-center object-cover"
+                 :src="card.createImageUrl()"/>
       </div>
     </div>
 

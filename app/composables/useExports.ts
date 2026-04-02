@@ -73,7 +73,7 @@ export const prepareCardsPng = async (node: HTMLElement , name: string ) => {
 
 }
 
-export const exportDeckToPDF = async (cards:string[] , name:string = "deck") => {
+export const exportDeckToPDFBackup = async (cards:string[] , name:string = "deck") => {
 
   const pdf = new jsPDF({
     orientation: 'portrait',
@@ -141,4 +141,79 @@ export const exportDeckToPDF = async (cards:string[] , name:string = "deck") => 
 
   pdf.save(`${name}.pdf`);
 
+}
+
+export const exportDeckToPDF = async (cards: string[], name: string = "deck") => {
+
+  const pdf = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+    compress: true
+  });
+
+  // A4 dimensions
+  const pageWidth = 210;
+  const pageHeight = 297;
+
+  // Card size (standard ~63x89 mm)
+  const cardWidth = 63;
+  const cardHeight = 89;
+  const margin = 4;
+
+  // 1. Get back of card (last item)
+  const cardBack = cards.pop();
+  if (!cardBack) {
+    console.error("No back of card found !");
+    return;
+  }
+
+  // 2. Center grid 3x3
+  const xStart = (pageWidth - (3 * cardWidth + 2 * margin)) / 2;
+  const yStart = (pageHeight - (3 * cardHeight + 2 * margin)) / 2;
+
+  // 3. Cards loop
+  let x = xStart;
+  let y = yStart;
+
+  for (let i = 0; i < cards.length; i++) {
+
+    // New page every 9 cards
+    if (i > 0 && i % 9 === 0) {
+      pdf.addPage();
+      x = xStart;
+      y = yStart;
+    }
+
+    // New row every 3 cards
+    else if (i > 0 && i % 3 === 0) {
+      x = xStart;
+      y += cardHeight + margin;
+    }
+
+    pdf.addImage(cards[i], 'PNG', x, y, cardWidth, cardHeight);
+    x += cardWidth + margin;
+  }
+
+  // 4. Final page with 9x back of card
+  pdf.addPage();
+  x = xStart;
+  y = yStart;
+
+  for (let i = 0; i < 9; i++) {
+    if (i > 0 && i % 3 === 0) {
+      x = xStart;
+      y += cardHeight + margin;
+    }
+
+    pdf.addImage(cardBack, 'PNG', x, y, cardWidth, cardHeight);
+    x += cardWidth + margin;
+  }
+
+  // 5. Save PDF
+  if (!name) {
+    name = "deck";
+  }
+
+  pdf.save(`${name}.pdf`);
 }

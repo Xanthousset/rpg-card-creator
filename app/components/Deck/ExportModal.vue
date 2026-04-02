@@ -1,20 +1,22 @@
 <template>
   <div class="relative bg-black flex flex-col items-center gap-24 rounded-2xl p-12" id="deck-modal">
-    <div v-if="progress != 100" class="w-full h-10/12">
+<!--    <div v-if="progress != 100" class="w-full h-10/12">-->
 
-        <UCarousel v-slot="{ item , index }"
-                   :items="cards"
-                   :ui="{ item: 'basis-1/3' }"
-                   ref="carousel"
-                   :containScroll="false"
+<!--&lt;!&ndash;        <UCarousel v-slot="{ item , index }"&ndash;&gt;-->
+<!--&lt;!&ndash;                   :items="cards"&ndash;&gt;-->
+<!--&lt;!&ndash;                   :ui="{ item: 'basis-1/3' }"&ndash;&gt;-->
+<!--&lt;!&ndash;                   ref="carousel"&ndash;&gt;-->
+<!--&lt;!&ndash;                   :containScroll="false"&ndash;&gt;-->
 
-        >
-          <CardPreview :card="item" :key="item.id" class="slide" :class="{'active' : index === currentIndex}" />
-        </UCarousel>
+<!--&lt;!&ndash;        >&ndash;&gt;-->
+<!--&lt;!&ndash;          <CardPreview :card="item" :key="item.id" class="slide" :class="{'active' : index === currentIndex}" />&ndash;&gt;-->
+
+<!--&lt;!&ndash;        </UCarousel>&ndash;&gt;-->
 
 
+<!--    </div>-->
 
-    </div>
+    <DeckExportAnimation v-if="progress != 100" :cards="cards" :index="currentIndex" />
 
     <div v-else >
       Export fini
@@ -45,6 +47,8 @@ import CardPreview from "~/components/Cards/CardPreview.vue";
 import {convertToPng, exportDeckToPDF, prepareCardsPng, zipAndDownload} from "~/composables/useExports";
 import PrintCard from "~/components/Cards/PrintCard.vue";
 import PrintBack from "~/components/Cards/Back/PrintBack.vue";
+import BackPreview from "~/components/Cards/Back/BackPreview.vue";
+import DeckExportAnimation from "~/components/Deck/DeckExportAnimation.vue";
 
 const deckStore = useDeckStore()
 

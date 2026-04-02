@@ -5,7 +5,7 @@
     <GeneralSettings/>
 
 
-    <FrontSettings v-show="isFront"/>
+<!--    <FrontSettings v-show="isFront"/>-->
 
 
     <BackSettings v-show="!isFront"/>
