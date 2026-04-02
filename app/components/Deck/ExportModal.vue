@@ -22,13 +22,13 @@
       Export fini
     </div>
 
+    <UProgress v-model="progress" class="w-4/12" />
+
     <PrintCard v-if="currentCard" :card="currentCard" :key="currentCard.id" ref="cardPrint" />
     <PrintBack ref="backPrint"/>
 
 
     <div class="h-2/12">
-
-      <UProgress v-model="progress" />
 
       <UInput v-model="deckName" placeholder="Deck name"></UInput>
 
