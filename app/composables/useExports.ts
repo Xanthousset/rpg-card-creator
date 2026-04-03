@@ -12,6 +12,10 @@ type DeckFile = {
 export const zipAndDownload = (files: DeckFile[] , deckName:string = 'deck') => {
   const zip = new JSZip();
 
+  if (!deckName) {
+    deckName = "deck";
+  }
+
   files.forEach((file) => {
     zip.file(file.filename , file.file)
   })

@@ -39,7 +39,7 @@ watch(() => props.index, (newIndex, oldIndex) => {
     // durée de l'anim
     setTimeout(() => {
       leavingIndex.value = null
-    }, 1000)
+    }, 500)
   }
 })
 
@@ -97,7 +97,7 @@ const getStyle = (i: number) => {
 .slide {
   position: absolute;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 14px 28px, rgba(0, 0, 0, 0.2) 0px 10px 10px;
-  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease 0.6s;
+  transition: transform .5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease 0.2s;
   z-index: 1;
 
   &.active {
@@ -106,7 +106,7 @@ const getStyle = (i: number) => {
   }
 
   &.leaving {
-    transform: translate(-35%, 0) rotate(-5deg);
+    transform: translate(-25%, 0) rotate(-5deg);
     opacity: 0;
     z-index: 20;
   }

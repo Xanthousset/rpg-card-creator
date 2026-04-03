@@ -1,20 +1,20 @@
 <template>
-  <div class="w-full cursor-pointer hover-3d" >
+  <div class="w-full cursor-pointer " >
 
     <div class="w-full  overflow-hidden card ">
 
       <WitcherRender :card="card" />
 
     </div>
-
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+<!--    hover-3d-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
+<!--    <div></div>-->
 
   </div>
 </template>
