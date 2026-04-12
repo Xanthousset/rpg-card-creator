@@ -5,15 +5,15 @@
       <SmallBackCard @click="openBack" />
     </div>
 
-    <UModal v-model:open="showModal" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
+    <UModal v-if="showModal" v-model:open="showModal" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
       <template #content >
-        <DeckModal v-if="showModal" :card="activeCard" :isBack="isBack" @deleteCard="deleteCard"/>
+        <DeckModal  :card="activeCard" :isBack="isBack" @deleteCard="deleteCard"/>
       </template>
     </UModal>
 
-    <UModal v-model:open="showExport" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
+    <UModal v-if="showExport && deck" v-model:open="showExport" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
       <template #content >
-        <ExportModal v-if="deck" />
+        <ExportModal />
       </template>
     </UModal>
 

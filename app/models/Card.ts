@@ -11,7 +11,7 @@ export class Card {
   public defense?: string | null | undefined;
   public range?: string | null | undefined;
   public duration?: string | null | undefined;
-
+  public objectUrl?: string;
 
   constructor(name: string = '', image: string | File | undefined = undefined, description: string = '', cost: number | null = null) {
     this.id = crypto.randomUUID();
@@ -22,13 +22,22 @@ export class Card {
   }
 
   createImageUrl(): string {
-    if(this.image === null || this.image === undefined) {
-      return '/img/placeholder.png';
+    if (!this.image) return '/img/placeholder.png';
+
+    if (typeof this.image === 'string') return this.image;
+
+    if (!this.objectUrl) {
+      this.objectUrl = URL.createObjectURL(this.image);
     }
-    if(typeof this.image === 'string') {
-      return this.image;
+
+    return this.objectUrl;
+  }
+
+  destroy():void {
+    if (this.objectUrl) {
+      URL.revokeObjectURL(this.objectUrl);
+      this.objectUrl = undefined;
     }
-    return URL.createObjectURL(this.image)
   }
 
 }

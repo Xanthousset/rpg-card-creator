@@ -1,12 +1,19 @@
 <template>
   <div>
-    <div>Border Radius</div>
+    <div class="mb-2">Border Radius</div>
     <USlider
       v-model="settings.borderRadius"
+      color="primary"
       :step=".5"
       :min="0"
       :max="10"
+      :ui="{
+        thumb: 'rhombus'
+      }"
     />
+
+
+
   </div>
 </template>
 
@@ -17,6 +24,3 @@ const settings = optionsStore.options
 
 </script>
 
-<style scoped>
-
-</style>

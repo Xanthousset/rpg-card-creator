@@ -14,16 +14,16 @@
       </div>
 
       <div class="losange right">
-        <div class="text-center font-bold witcher-text-color card-info">
-          {{ card.element }}
+        <div class="w-full h-full flex justify-center items-center" >
+          <img class="w-7/12 h-7/12 object-contain object-center" v-show="card.element" :src="card.element" />
         </div>
       </div>
 
     </div>
 
     <div class="aspect-square w-full image-container">
-      <div class="rounded-full overflow-hidden aspect-square w-full ">
-        <NuxtImg class="w-full aspect-square object-center object-cover"
+      <div class="rounded-full aspect-square w-full ">
+        <img class="w-full aspect-square object-center object-cover rounded-full"
                  :src="card.createImageUrl()"/>
       </div>
     </div>
@@ -73,7 +73,6 @@
 
 <script setup lang="ts">
 
-import {editorToolBarItems} from "~/utils/UiSettings";
 import {Card} from "~/models/Card";
 
 const props = defineProps<{

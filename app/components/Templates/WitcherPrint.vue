@@ -13,8 +13,8 @@
           {{ card.name }}
         </div>
 
-        <div class="text-center font-bold witcher-text-color card-info element">
-          {{ card.element }}
+        <div class=" w-full h-full flex justify-center items-center element" >
+          <img class="w-7/12 h-7/12 object-contain object-center" v-show="card.element" :src="card.element" />
         </div>
       </div>
 
@@ -158,7 +158,7 @@ const props = defineProps<{
     padding-right: 64px;
   }
 
- .defense {
+  .defense {
     position: relative;
     line-height: 1em;
     top: -6px;

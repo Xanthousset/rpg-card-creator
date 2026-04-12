@@ -56,6 +56,7 @@
 import { Card } from '~/models/Card'
 import CardFront from "~/components/Editor/CardFront.vue";
 import CardBack from "~/components/Editor/CardBack.vue";
+
 const props = defineProps<{
   editingCard?: Card
   isEditing?: boolean

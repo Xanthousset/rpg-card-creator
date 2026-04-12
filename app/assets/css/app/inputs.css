@@ -1,0 +1,4 @@
+.rhombus {
+  border-radius: 3px;
+  transform: translateX(-50%) rotate(45deg) !important;
+}

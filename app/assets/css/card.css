@@ -16,6 +16,7 @@
 }
 
 .card {
+  contain: layout;
   container-type: inline-size;
   font-family: Baskervville , serif;
   background-color: var(--card-f-bg);

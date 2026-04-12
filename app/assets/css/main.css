@@ -1,13 +1,13 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 @import "./fonts.css";
+@import "./app/inputs.css";
 @import "./card.css";
 
 @import "./templates/witcher.css";
 
-@plugin "daisyui";
 
-@theme static {
+@theme {
   --font-sans: 'Public Sans', sans-serif;
 
   --color-shark-50: #fafafa;
@@ -21,5 +21,22 @@
   --color-shark-800: #212227;
   --color-shark-900: #16171d;
   --color-shark-950: #08090c;
+
+}
+
+:root {
+  --ui-primary: #c29c2c;
+
+  --ui-color-primary-50: #fbf8eb;
+  --ui-color-primary-100: #f5efcd;
+  --ui-color-primary-200: #ecdf9f;
+  --ui-color-primary-300: #e0c869;
+  --ui-color-primary-400: #d3af37;
+  --ui-color-primary-500: #c29c2c;
+  --ui-color-primary-600: #a47b23;
+  --ui-color-primary-700: #825d1e;
+  --ui-color-primary-800: #6c4b1f;
+  --ui-color-primary-900: #5c4120;
+  --ui-color-primary-950: #35220e;
 
 }

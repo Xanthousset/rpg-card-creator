@@ -15,7 +15,12 @@ export const useDeckStore = defineStore('deck', () => {
 
   function removeCard(id: string) {
     const index = cards.findIndex(c => c.id === id);
-    if (index !== -1) cards.splice(index, 1);
+
+    if (index !== -1) {
+      const card = cards[index];
+      card?.destroy()
+      cards.splice(index, 1);
+    }
   }
 
   function getCardById(id: string): Card | undefined {
@@ -39,13 +44,16 @@ export const useDeckStore = defineStore('deck', () => {
         updatedCard.cost
       );
       // Copie les propriétés optionnelles
-      cards[index].id = updatedCard.id;
-      cards[index].level = updatedCard.level;
-      cards[index].icon = updatedCard.icon;
-      cards[index].element = updatedCard.element;
-      cards[index].range = updatedCard.range;
-      cards[index].duration = updatedCard.duration;
-      cards[index].defense = updatedCard.defense;
+
+      const card = cards[index];
+
+      card.id = updatedCard.id;
+      card.level = updatedCard.level;
+      card.icon = updatedCard.icon;
+      card.element = updatedCard.element;
+      card.range = updatedCard.range;
+      card.duration = updatedCard.duration;
+      card.defense = updatedCard.defense;
     }
 
   }
@@ -77,15 +85,10 @@ export const useDeckStore = defineStore('deck', () => {
 
   const createBackCardUrl = computed(() => {
 
-    console.log('ici' , backImage.value)
-
-      if(backImage.value === null || backImage.value === undefined) {
-        return '/img/templates/witcher/back-default.png';
-      }
-      if(typeof backImage.value === 'string') {
-        return backImage.value;
-      }
-      return URL.createObjectURL(backImage.value)
+    if (!backImage.value) return '/img/templates/witcher/back-default.png';
+    return typeof backImage.value === 'string'
+      ? backImage.value
+      : URL.createObjectURL(backImage.value);
 
   })
 

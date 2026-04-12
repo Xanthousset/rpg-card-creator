@@ -13,10 +13,25 @@
         <UInput v-model="card.name" variant="none" size="sm" placeholder="Card name" :ui="{'base' : 'placeholder:text-white text-center text-white card-name'}" />
       </div>
 
-      <div class="losange right">
-        <div>
-          <UInput v-model="card.element" variant="none" size="sm" placeholder="Element" :ui="{'base' : 'text-center font-bold witcher-text-color card-info'}" />
-        </div>
+      <div class="losange right cursor-pointer">
+
+        <UPopover v-model:open="openElement" :content="{side: 'bottom' , align: 'center'}">
+
+          <template #anchor>
+            <div class=" w-full h-full flex justify-center items-center" @click="openElement = true">
+              <img class="w-7/12 h-7/12 object-contain object-center" v-show="card.element" :src="card.element" />
+            </div>
+          </template>
+
+          <template #content>
+            <ElementSelector :card="card" />
+          </template>
+        </UPopover>
+
+
+<!--        <div>-->
+<!--          <UInput v-model="card.element" variant="none" size="sm" placeholder="Element" :ui="{'base' : 'text-center font-bold witcher-text-color card-info'}" />-->
+<!--        </div>-->
       </div>
 
     </div>
@@ -28,7 +43,9 @@
 
         <UFileUpload v-if="!card.image" v-model="card.image" class="w-full aspect-square" :ui="{base: 'bg-transparent cursor-pointer rounded-full' , file: 'rounded-full'}" />
 
-        <ImagePreview v-if="card.image" :card="card" />
+        <ImagePreview v-if="card.image"
+                      :key="card.id + '_' + (card.image?.name || card.image)"
+                      :card="card" />
 
       </div>
     </div>
@@ -82,10 +99,13 @@
 import {editorToolBarItems} from "~/utils/UiSettings";
 import {Card} from "~/models/Card";
 import ImagePreview from "~/components/Editor/ImagePreview.vue";
+import ElementSelector from "~/components/Editor/ElementSelector.vue";
 
 const props = defineProps<{
   card: Card
 }>()
+
+const openElement = ref<boolean>(false)
 
 
 </script>
@@ -157,6 +177,11 @@ const props = defineProps<{
     left: unset;
     right: 0;
     transform: translateX(50%) rotate(45deg);
+    > div {
+      position: relative;
+      z-index: 3;
+      transform: rotate(-45deg);
+    }
   }
 
   &::before {
