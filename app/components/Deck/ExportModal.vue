@@ -127,6 +127,12 @@ const prepareCardsForPdf = async (element: HTMLElement, name: string) => {
   overflow: visible;
   width: 60vw;
   aspect-ratio: 2/1.5;
+
+  @media (max-width: 768px) {
+    aspect-ratio: unset;
+    width: 90vw;
+    height: 95dvh;
+  }
 }
 
 .slide {

@@ -8,7 +8,7 @@
 <!--    <FrontSettings v-show="isFront"/>-->
 
 
-    <BackSettings v-show="!isFront"/>
+<!--    <BackSettings v-show="!isFront"/>-->
 
 
 

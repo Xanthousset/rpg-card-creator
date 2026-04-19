@@ -1,7 +1,9 @@
 <template>
-  <div class="relative bg-black flex gap-24 rounded-2xl p-12" id="deck-modal">
+  <div class="relative bg-black flex flex-col md:flex-row gap-12 md:gap-24 rounded-2xl p-12" id="deck-modal">
+
     <div v-if="card && !isBack">
       <CardPreview v-if="card" :card="card" />
+
       <PrintCard v-if="card" :card="card" ref="cardPrint" />
     </div>
 
@@ -84,5 +86,10 @@ const sendToEditingBack = () => {
 #deck-modal {
   width: 60vw;
   aspect-ratio: 2/1.5;
+  @media (max-width: 768px) {
+    aspect-ratio: unset;
+    width: 90vw;
+    height: 95dvh;
+  }
 }
 </style>

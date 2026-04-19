@@ -313,6 +313,8 @@ const openElement = ref<boolean>(false)
 }
 
 .duration__content {
+  display: flex;
+  align-items: center;
   width: 100%;
   padding-left: 4cqw;
   z-index: 1;
@@ -365,6 +367,9 @@ const openElement = ref<boolean>(false)
 }
 
 .range__content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
   z-index: 1;
   padding-right: 4cqw;

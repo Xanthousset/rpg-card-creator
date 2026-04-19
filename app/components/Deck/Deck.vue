@@ -1,6 +1,6 @@
 <template>
   <div class="p-12 h-screen overflow-y-scroll">
-    <div class="w-10/12 mx-auto grid grid-cols-4 gap-12">
+    <div class="w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-12">
       <SmallCard v-for="(card , i) in deck" :key="card.id" :card="card" @click="openModal(card)"  />
       <SmallBackCard @click="openBack" />
     </div>
