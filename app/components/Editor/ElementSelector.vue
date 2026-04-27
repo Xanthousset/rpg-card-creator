@@ -1,20 +1,32 @@
 <template>
-  <div class="p-4 grid gap-2 grid-cols-3">
+  <ul class="p-4 grid gap-2 grid-cols-3">
 
-    <button
-      v-for="el in elements"
-      :key="el.name"
-      class="bg-shark-800 element"
-      :class="{'active' : card?.element === el.src}"
-      type="button"
-      @click="card.element = el.src"    >
-      <img
-        class="w-8 h-8 object-center object-contain"
-        :src="el.src"
-      />
-    </button>
+    <li v-for="el in elements"
+           :key="el.name">
+      <UPopover mode="hover"
+                arrow :open-delay="300"
+                :close-delay="100"
+                :content="{align: 'center',side: 'top',sideOffset: 8}"
+      >
+        <button
 
-  </div>
+          class="bg-shark-800 element"
+          :class="{'active' : card?.element === el.src}"
+          type="button"
+          @click="card.element = el.src"    >
+          <img
+            class="w-8 h-8 object-center object-contain"
+            :src="el.src"
+          />
+        </button>
+        <template #content>
+          <p class="capitalize p-2">{{ el.name }}</p>
+        </template>
+      </UPopover>
+    </li>
+
+
+  </ul>
 </template>
 
 <script setup lang="ts">

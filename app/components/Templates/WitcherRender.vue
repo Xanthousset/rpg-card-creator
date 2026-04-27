@@ -88,5 +88,4 @@ const props = defineProps<{
 .range__content {
   padding-right : 5cqw;
 }
-
 </style>

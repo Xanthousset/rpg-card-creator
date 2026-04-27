@@ -149,12 +149,74 @@ export const exportDeckToPDFBackup = async (cards:string[] , name:string = "deck
 
 export const exportDeckToPDF = async (cards: string[], name: string = "deck") => {
 
+  const settings = useOptionsStore().options
+
+  const cutLinesEnabled = settings.print.cutLines;
+
   const pdf = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
     format: 'a4',
     compress: true
   });
+
+  const drawConnectedCutMarks = (
+    pdf: jsPDF,
+    xStart: number,
+    yStart: number,
+    cardWidth: number,
+    cardHeight: number,
+    margin: number
+  ) => {
+
+    if(!cutLinesEnabled) {
+      return
+    }
+
+      pdf.setDrawColor(150);
+    pdf.setLineWidth(0.2);
+    pdf.setLineDash([1, 1], 0);
+
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+
+        const x = xStart + col * (cardWidth + margin);
+        const y = yStart + row * (cardHeight + margin);
+
+        // 🔹 LIGNES HORIZONTALES (haut + bas de chaque carte)
+        pdf.line(
+          x - margin / 2,
+          y,
+          x + cardWidth + margin / 2,
+          y
+        );
+
+        pdf.line(
+          x - margin / 2,
+          y + cardHeight,
+          x + cardWidth + margin / 2,
+          y + cardHeight
+        );
+
+        // 🔹 LIGNES VERTICALES (gauche + droite)
+        pdf.line(
+          x,
+          y - margin / 2,
+          x,
+          y + cardHeight + margin / 2
+        );
+
+        pdf.line(
+          x + cardWidth,
+          y - margin / 2,
+          x + cardWidth,
+          y + cardHeight + margin / 2
+        );
+      }
+    }
+
+    pdf.setLineDash([]);
+  };
 
   // A4 dimensions
   const pageWidth = 210;
@@ -184,9 +246,12 @@ export const exportDeckToPDF = async (cards: string[], name: string = "deck") =>
 
     // New page every 9 cards
     if (i > 0 && i % 9 === 0) {
+
       pdf.addPage();
+
       x = xStart;
       y = yStart;
+        drawConnectedCutMarks(pdf, xStart, yStart, cardWidth, cardHeight, margin)
     }
 
     // New row every 3 cards
@@ -196,6 +261,7 @@ export const exportDeckToPDF = async (cards: string[], name: string = "deck") =>
     }
 
     pdf.addImage(cards[i], 'PNG', x, y, cardWidth, cardHeight);
+      drawConnectedCutMarks(pdf, xStart, yStart, cardWidth, cardHeight, margin)
     x += cardWidth + margin;
   }
 
@@ -211,6 +277,7 @@ export const exportDeckToPDF = async (cards: string[], name: string = "deck") =>
     }
 
     pdf.addImage(cardBack, 'PNG', x, y, cardWidth, cardHeight);
+      drawConnectedCutMarks(pdf, xStart, yStart, cardWidth, cardHeight, margin)
     x += cardWidth + margin;
   }
 

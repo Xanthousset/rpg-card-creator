@@ -63,7 +63,11 @@
 }
 
 .card-text {
-  font-size: 4cqw;
+  font-size: 3.5cqw;
+  line-height: 1.5em !important;
+  p {
+    line-height: 1.5em !important;
+  }
 }
 
 .card-info {

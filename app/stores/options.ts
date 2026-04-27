@@ -15,6 +15,9 @@ export const useOptionsStore = defineStore('options', () => {
       backgroundColor: string
       borderColor: string
     }
+    print: {
+      cutLines: boolean
+    }
   }
 
   const isFront = ref<boolean>(true)
@@ -30,6 +33,9 @@ export const useOptionsStore = defineStore('options', () => {
       borderWidth : 0,
       backgroundColor : '#F1F1F1',
       borderColor : '#F1F1F1',
+    },
+    print: {
+      cutLines: true,
     }
   });
 
