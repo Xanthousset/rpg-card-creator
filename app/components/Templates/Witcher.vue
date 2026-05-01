@@ -58,7 +58,7 @@
         <UFileUpload v-if="!card.image" v-model="card.image" class="w-full aspect-square" :ui="{base: 'bg-transparent cursor-pointer rounded-full' , file: 'rounded-full'}" />
 
         <ImagePreview v-if="card.image"
-                      :key="card.id + '_' + (card.image?.name || card.image)"
+                      :key="card.id + '_' + (card.image?.name || card.name)"
                       :card="card" />
 
       </div>
@@ -66,7 +66,6 @@
 
 
     <div class="bottom-block">
-
 
       <span class="bottom__border"></span>
 

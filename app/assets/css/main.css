@@ -1,7 +1,11 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
+
 @import "./fonts.css";
+
+@import "./app/animations.css";
 @import "./app/inputs.css";
+
 @import "./card.css";
 
 @import "./templates/witcher.css";

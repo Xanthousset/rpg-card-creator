@@ -11,7 +11,7 @@ export class Card {
   public defense?: string | null | undefined;
   public range?: string | null | undefined;
   public duration?: string | null | undefined;
-  public objectUrl?: string;
+  public objectUrl?: string | undefined;
 
   constructor(name: string = '', image: string | File | undefined = undefined, description: string = '', cost: number | null = null) {
     this.id = crypto.randomUUID();
@@ -22,6 +22,10 @@ export class Card {
   }
 
   createImageUrl(): string {
+
+    console.log(this.image)
+    console.log(this.image?.name)
+
     if (!this.image) return '/img/placeholder.png';
 
     if (typeof this.image === 'string') return this.image;

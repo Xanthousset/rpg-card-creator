@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import Settings from "~/components/Settings/Settings.vue";
+
 const activeItem = ref('info')
 
 const items = computed( () =>
@@ -28,13 +30,18 @@ const items = computed( () =>
 </script>
 
 <template>
-  <div class="block md:hidden">
+
+    <USlideover side="bottom" >
+      <UButton class="fixed right-6 bottom-6 z-50" icon="i-lucide-menu" color="neutral" variant="subtle" />
+
+      <template #body>
+        <UNavigationMenu v-model="activeItem" orientation="vertical" :items="items" highlight class="flex-1" />
+        <Settings/>
+      </template>
+    </USlideover>
 
 
-    <UNavigationMenu v-model="activeItem" orientation="vertical" :items="items" highlight class="flex-1" />
 
-
-  </div>
 </template>
 
 <style scoped>

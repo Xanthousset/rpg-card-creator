@@ -1,9 +1,18 @@
 <template>
   <div class="p-12 h-screen overflow-y-scroll">
-    <div class="w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-12">
-      <SmallCard v-for="(card , i) in deck" :key="card.id" :card="card" @click="openModal(card)"  />
-      <SmallBackCard @click="openBack" />
-    </div>
+
+    <DeckFilters />
+
+    <transition-group tag="ul" name="list" class="w-10/12 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-12">
+      <li  v-for="(card , i) in deck" :key="card.id" >
+        <SmallCard :card="card" @click="openModal(card)"  />
+      </li>
+
+      <li>
+        <SmallBackCard @click="openBack" />
+      </li>
+
+    </transition-group>
 
     <UModal v-if="showModal" v-model:open="showModal" :ui="{content: 'bg-transparent flex justify-center items-center w-auto max-w-auto'}">
       <template #content >
@@ -17,7 +26,7 @@
       </template>
     </UModal>
 
-    <div class="fixed bottom-12 right-12">
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:bottom-12 md:right-12">
       <UButton @click="exportDeck">Export Deck</UButton>
     </div>
 

@@ -5,7 +5,7 @@
       <Settings/>
     </UDashboardSidebar>
 
-    <MobileSideBar />
+    <MobileSideBar class="block md:hidden" />
 
     <UDashboardPanel class="bg-shark-950">
       <slot />

@@ -92,6 +92,45 @@ export const useDeckStore = defineStore('deck', () => {
 
   })
 
+  function orderDeck(orderBy: string, asc: boolean = true) {
+    if (cards?.length < 1) return cards;
+
+    cards.sort((a, b) => {
+      // Comparaison principale
+      const valueA = a[orderBy as keyof typeof a];
+      const valueB = b[orderBy as keyof typeof a];
+
+      // Comparaison pour les chaînes de caractères
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        const primaryComparison = asc
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+        if (primaryComparison !== 0) return primaryComparison;
+      }
+      // Comparaison pour les nombres
+      else if (typeof valueA === 'number' && typeof valueB === 'number') {
+        const primaryComparison = asc
+          ? valueA - valueB
+          : valueB - valueA;
+        if (primaryComparison !== 0) return primaryComparison;
+      }
+      // Par défaut, convertir en chaîne et comparer
+      else {
+        const primaryComparison = asc
+          ? String(valueA).localeCompare(String(valueB))
+          : String(valueB).localeCompare(String(valueA));
+        if (primaryComparison !== 0) return primaryComparison;
+      }
+
+      // Si les valeurs sont égales, trier par 'name' (par ordre alphabétique croissant)
+      const nameA = a.name;
+      const nameB = b.name;
+      return typeof nameA === 'string' && typeof nameB === 'string'
+        ? nameA.localeCompare(nameB)
+        : 0;
+    });
+  }
+
   return {
     cards,
     editingCard,
@@ -103,6 +142,7 @@ export const useDeckStore = defineStore('deck', () => {
     getCardById,
     setEditingCard,
     duplicateCard,
+    orderDeck,
     createBackCardUrl
   };
 });

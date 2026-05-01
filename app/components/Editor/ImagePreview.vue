@@ -1,6 +1,7 @@
 <template>
-  <div v-if="card.image" class=" image-preview" @click="card.image = null" >
+  <div v-if="card.image" class=" image-preview" @click="card.image = undefined; card.objectUrl = undefined" >
     <NuxtImg v-if="card.image" :src="card.createImageUrl()"/>
+
 
     <div class="font-title text-white text-3xl remove">
       Remove image
