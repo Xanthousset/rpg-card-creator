@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">
 
       <div class="flex items-center justify-between gap-6">
-        <h3 class="font-semibold text-xl">
+        <h3 class="font-bold text-xl">
           Global Card Settings
         </h3>
 
@@ -35,7 +35,7 @@
     <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">
 
       <div class="flex items-center justify-between gap-6">
-        <h3 class="font-semibold text-xl">
+        <h3 class="font-bold text-xl">
           Card Settings
         </h3>
 
@@ -59,7 +59,7 @@
 
     <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">
 
-      <h3 class="font-semibold text-xl">
+      <h3 class="font-bold text-xl">
         Export Settings
       </h3>
 

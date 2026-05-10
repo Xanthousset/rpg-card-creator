@@ -53,7 +53,7 @@ const cardRef = ref<HTMLElement | null>(null)
   &:hover {
     transform: scale(1.05);
     .card {
-      filter: drop-shadow(0 10px 15px rgba(194, 156, 44, 0.2));
+      filter: drop-shadow(0 10px 15px rgba(173, 164, 106, 0.2));
     }
   }
 }

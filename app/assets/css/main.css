@@ -3,6 +3,7 @@
 
 @import "./fonts.css";
 
+@import "./app/global.css";
 @import "./app/animations.css";
 @import "./app/inputs.css";
 
@@ -12,13 +13,13 @@
 
 
 @theme {
-  --font-sans: 'Public Sans', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
 
   --color-shark-50: #fafafa;
   --color-shark-100: #f3f3f6;
   --color-shark-200: #e2e3e9;
   --color-shark-300: #d2d3db;
-  --color-shark-400: #9b9eb0;
+  --color-shark-400: #202228;
   --color-shark-500: #6b6f80;
   --color-shark-600: #4c4f61;
   --color-shark-700: #3b3d4a;
@@ -29,18 +30,25 @@
 }
 
 :root {
-  --ui-primary: #c29c2c;
+  --ui-primary: #ADA46A;
+  --ui-bg: #202228;
+  --ui-border: #16171d;
+  --ui-bg-elevated: #202228;
 
-  --ui-color-primary-50: #fbf8eb;
-  --ui-color-primary-100: #f5efcd;
-  --ui-color-primary-200: #ecdf9f;
-  --ui-color-primary-300: #e0c869;
-  --ui-color-primary-400: #d3af37;
-  --ui-color-primary-500: #c29c2c;
-  --ui-color-primary-600: #a47b23;
-  --ui-color-primary-700: #825d1e;
-  --ui-color-primary-800: #6c4b1f;
-  --ui-color-primary-900: #5c4120;
-  --ui-color-primary-950: #35220e;
+  --gray: #202228;
+  --black: #111216;
+  --red: #ab4848;
+
+  --ui-color-primary-50: #f6f6f0;
+  --ui-color-primary-100: #eae9d8;
+  --ui-color-primary-200: #d7d4b4;
+  --ui-color-primary-300: #c0ba89;
+  --ui-color-primary-400: #ada46a;
+  --ui-color-primary-500: #998e55;
+  --ui-color-primary-600: #817446;
+  --ui-color-primary-700: #665a3a;
+  --ui-color-primary-800: #574c34;
+  --ui-color-primary-900: #4c4230;
+  --ui-color-primary-950: #2a2319;
 
 }

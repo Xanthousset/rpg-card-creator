@@ -1,13 +1,13 @@
 <template>
   <UDashboardGroup>
-    <UDashboardSidebar  class="hidden md:block bg-shark-800" >
+    <UDashboardSidebar  class="hidden md:block bg-gray" >
       <SidebarNav/>
       <Settings/>
     </UDashboardSidebar>
 
     <MobileSideBar class="block md:hidden" />
 
-    <UDashboardPanel class="bg-shark-950">
+    <UDashboardPanel class="bg-black">
       <slot />
     </UDashboardPanel>
   </UDashboardGroup>

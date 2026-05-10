@@ -12,7 +12,7 @@
                  :style="getStyle(item.realIndex)"
     />
 
-    <!--    <BackPreview class="slide" />-->
+        <BackPreview class="slide" />
   </div>
 
 </template>

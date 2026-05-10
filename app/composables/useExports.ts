@@ -9,7 +9,7 @@ type DeckFile = {
   filename: string,
 }
 
-export const zipAndDownload = (files: DeckFile[] , deckName:string = 'deck') => {
+export const zipAndDownload = async (files: DeckFile[] , deckName:string = 'deck') => {
   const zip = new JSZip();
 
   if (!deckName) {
@@ -61,7 +61,6 @@ export const convertToPng = async (node: HTMLElement , name: string ) => {
 
 export const prepareCardsPng = async (node: HTMLElement , name: string ) => {
 
-  console.log("prepareCardsPng", node, name)
 
   return await new Promise<string>((resolve) => {
     html2canvas(node, {

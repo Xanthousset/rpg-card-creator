@@ -1,33 +1,39 @@
 <template>
-  <div class="relative bg-black flex flex-col md:flex-row gap-12 md:gap-24 rounded-2xl p-12" id="deck-modal">
+  <div class="relative bg-gray flex flex-col md:flex-row gap-12 md:gap-24 rounded-2xl p-12" id="deck-modal">
 
-    <div v-if="card && !isBack">
+    <div v-if="card && !isBack" class="shrink-0">
       <CardPreview v-if="card" :card="card" />
 
       <PrintCard v-if="card" :card="card" ref="cardPrint" />
     </div>
 
-    <div v-if="isBack">
+    <div v-if="isBack" class="shrink-0">
       <BackPreview v-if="isBack" />
       <PrintBack ref="backPrint"/>
     </div>
 
-    <div class="flex flex-col justify-center items-center gap-8">
+    <div class="grow">
 
-      <div v-if="card">
-        <UButton @click.native="sendToEditing" href="/editor">Edit</UButton>
+      <div v-if="card" class="flex flex-col w-full h-full justify-center items-center gap-6">
 
-        <div>
+        <ButtonCTA @click.native="sendToEditing" to="/editor" text="Edit" />
+
+        <div class="flex  justify-center items-center gap-4">
+          <div class="flex justify-center items-center gap-2">
+
           <UButton @click="duplicationNumber > 1 ? duplicationNumber-- : duplicationNumber = 1">-</UButton>
-          <UInput v-model="duplicationNumber" />
+          <UInput class="w-12" v-model="duplicationNumber" />
           <UButton @click="duplicationNumber++">+</UButton>
+
+          </div>
+          <ButtonCTA @click="duplicateCard" text="Duplicate" />
         </div>
-        <UButton @click="duplicateCard">Duplicate</UButton>
-        <UButton @click="exportCard">Export to png</UButton>
-        <UButton  @click="emit('deleteCard')">Delete</UButton>
+
+        <ButtonCTA @click="exportCard" text="Export to png" />
+        <ButtonCTA class="red" text="Delete card"  @click="emit('deleteCard')" />
       </div>
 
-      <div v-if="isBack">
+      <div v-if="isBack" class="flex flex-col h-full justify-center items-center gap-6">
         <UButton @click.native="sendToEditingBack" href="/editor">Edit</UButton>
         <UButton  @click="exportBack">Export to png</UButton>
       </div>
@@ -44,6 +50,7 @@ import { saveAsPng } from "~/composables/useExports";
 import PrintCard from "~/components/Cards/PrintCard.vue";
 import BackPreview from "~/components/Cards/Back/BackPreview.vue";
 import PrintBack from "~/components/Cards/Back/PrintBack.vue";
+import ButtonCTA from "~/components/UI/ButtonCTA.vue";
 
 const props = defineProps<{
   card?: Card

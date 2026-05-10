@@ -65,7 +65,7 @@ const elements = Object.entries(elementImages).map(([path, value]) => {
   cursor: pointer;
   transition: background-color 0.3s ease;
   &:hover , &.active {
-    background-color: var(--color-shark-900);
+    background-color: var(--black);
   }
 }
 </style>
