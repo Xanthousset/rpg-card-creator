@@ -5,7 +5,7 @@
 
       <div class="flex items-center justify-between gap-6">
         <h3 class="font-bold text-xl">
-          Global Card Settings
+          Global Settings
         </h3>
 
         <UTooltip :delay-duration="0"
@@ -32,30 +32,30 @@
       />
     </div>
 
-    <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">
+<!--    <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">-->
 
-      <div class="flex items-center justify-between gap-6">
-        <h3 class="font-bold text-xl">
-          Card Settings
-        </h3>
+<!--      <div class="flex items-center justify-between gap-6">-->
+<!--        <h3 class="font-bold text-xl">-->
+<!--          Card Settings-->
+<!--        </h3>-->
 
-        <UTooltip :delay-duration="0"
-                  v-model:open="openSpecificCardTooltips"
-                  arrow
-                  text="These settings are only applied to the currently edited card"
-                  :content="contentSettings">
-          <UIcon class="relative" name="i-lucide-circle-question-mark" @click="openSpecificCardTooltips = true" />
-        </UTooltip>
-      </div>
+<!--        <UTooltip :delay-duration="0"-->
+<!--                  v-model:open="openSpecificCardTooltips"-->
+<!--                  arrow-->
+<!--                  text="These settings are only applied to the currently edited card"-->
+<!--                  :content="contentSettings">-->
+<!--          <UIcon class="relative" name="i-lucide-circle-question-mark" @click="openSpecificCardTooltips = true" />-->
+<!--        </UTooltip>-->
+<!--      </div>-->
 
-      <UTooltip :delay-duration="0"
-                arrow
-                text="Select card description text to format it"
-                :content="contentSettings">
-        <UIcon class="relative" name="i-lucide-circle-question-mark" @click="openSpecificCardTooltips = true" />
-      </UTooltip>
+<!--      <UTooltip :delay-duration="0"-->
+<!--                arrow-->
+<!--                text="Select card description text to format it"-->
+<!--                :content="contentSettings">-->
+<!--        <UIcon class="relative" name="i-lucide-circle-question-mark" @click="openSpecificCardTooltips = true" />-->
+<!--      </UTooltip>-->
 
-    </div>
+<!--    </div>-->
 
     <div class="flex flex-col gap-4 pt-6 mt-6 border-t border-primary">
 
@@ -65,11 +65,11 @@
 
       <div class="flex items-center gap-2" >
 
-        <USwitch label="Cut lines"
+        <UCheckbox label="Cut lines"
                  v-model="settings.print.cutLines"
                  :ui="{
                       label: 'cursor-pointer',
-                      base: 'cursor-pointer'
+                      base: 'cursor-pointer ring-primary'
                     }"
         />
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col justify-center bg-red items-center w-full h-full">
+  <div class="flex flex-col justify-center items-center w-full h-screen">
 
     <h1 class="text-4xl font-bold text-primary ">
       RPG CARDS CREATOR
@@ -14,4 +14,9 @@
 <script setup lang="ts">
 
 import ButtonCTA from "~/components/UI/ButtonCTA.vue";
+
+definePageMeta({
+  layout: 'homepage',
+})
+
 </script>

@@ -34,13 +34,16 @@ onMounted(() => {
   watch(settings , () => {
     r.style.setProperty('--card-radius', settings.borderRadius+"%");
 
-    r.style.setProperty('--card-f-border-width', settings.front.borderWidth+'px');
-    r.style.setProperty('--card-f-border-color', settings.front.borderColor);
-    r.style.setProperty('--card-f-bg', settings.front.backgroundColor);
 
-    r.style.setProperty('--card-b-border-width', settings.back.borderWidth+'px');
-    r.style.setProperty('--card-b-border-color', settings.back.borderColor);
-    r.style.setProperty('--card-b-bg', settings.back.backgroundColor);
+    // à voir si on reprend cette idée
+
+    // r.style.setProperty('--card-f-border-width', settings.front.borderWidth+'px');
+    // r.style.setProperty('--card-f-border-color', settings.front.borderColor);
+    // r.style.setProperty('--card-f-bg', settings.front.backgroundColor);
+    //
+    // r.style.setProperty('--card-b-border-width', settings.back.borderWidth+'px');
+    // r.style.setProperty('--card-b-border-color', settings.back.borderColor);
+    // r.style.setProperty('--card-b-bg', settings.back.backgroundColor);
 
 
   }, { immediate: true })
